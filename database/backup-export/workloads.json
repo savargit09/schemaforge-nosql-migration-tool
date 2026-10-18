@@ -1,0 +1,212 @@
+[
+  {
+    "_id": {
+      "$oid": "6ab6b1d80f214b9d4adfe4e1"
+    },
+    "project_id": "6ab6b1d80f214b9d4adfe4dc",
+    "queries": [
+      "SELECT o.order_id, o.order_date, o.status, i.quantity FROM orders o JOIN order_items i ON o.order_id=i.order_id WHERE o.customer_id=3 ORDER BY o.order_date DESC",
+      "SELECT c.customer_id, c.name, o.order_id FROM customers c JOIN orders o ON c.customer_id=o.customer_id WHERE c.customer_id=3",
+      "SELECT p.product_id, p.name, SUM(i.quantity) FROM products p JOIN order_items i ON p.product_id=i.product_id GROUP BY p.product_id, p.name ORDER BY p.name"
+    ],
+    "analysis": {
+      "query_count": 3,
+      "table_accesses": {
+        "order_items": 2,
+        "orders": 2,
+        "customers": 1,
+        "products": 1
+      },
+      "join_frequency": [
+        {
+          "tables": [
+            "order_items",
+            "orders"
+          ],
+          "count": 1
+        },
+        {
+          "tables": [
+            "customers",
+            "orders"
+          ],
+          "count": 1
+        },
+        {
+          "tables": [
+            "order_items",
+            "products"
+          ],
+          "count": 1
+        }
+      ],
+      "co_access": [
+        {
+          "tables": [
+            "order_items",
+            "orders"
+          ],
+          "count": 1
+        },
+        {
+          "tables": [
+            "customers",
+            "orders"
+          ],
+          "count": 1
+        },
+        {
+          "tables": [
+            "order_items",
+            "products"
+          ],
+          "count": 1
+        }
+      ],
+      "filters": [
+        {
+          "table": "orders",
+          "column": "customer_id",
+          "count": 1
+        },
+        {
+          "table": "customers",
+          "column": "customer_id",
+          "count": 1
+        }
+      ],
+      "sorts": [
+        {
+          "table": "orders",
+          "column": "order_date",
+          "count": 1
+        },
+        {
+          "table": "products",
+          "column": "name",
+          "count": 1
+        }
+      ],
+      "groups": [
+        {
+          "table": "products",
+          "column": "product_id",
+          "count": 1
+        },
+        {
+          "table": "products",
+          "column": "name",
+          "count": 1
+        }
+      ]
+    },
+    "created_at": {
+      "$date": "2026-09-25T17:39:36.785Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b2814599ac0b6b3c14c4"
+    },
+    "project_id": "6ab6b1d80f214b9d4adfe4dc",
+    "queries": [
+      "SELECT o.order_id, o.order_date, o.status, i.quantity FROM orders o JOIN order_items i ON o.order_id=i.order_id WHERE o.customer_id=3 ORDER BY o.order_date DESC",
+      "SELECT c.customer_id, c.name, o.order_id FROM customers c JOIN orders o ON c.customer_id=o.customer_id WHERE c.customer_id=3",
+      "SELECT p.product_id, p.name, SUM(i.quantity) FROM products p JOIN order_items i ON p.product_id=i.product_id GROUP BY p.product_id, p.name ORDER BY p.name"
+    ],
+    "analysis": {
+      "query_count": 3,
+      "table_accesses": {
+        "order_items": 2,
+        "orders": 2,
+        "customers": 1,
+        "products": 1
+      },
+      "join_frequency": [
+        {
+          "tables": [
+            "order_items",
+            "orders"
+          ],
+          "count": 1
+        },
+        {
+          "tables": [
+            "customers",
+            "orders"
+          ],
+          "count": 1
+        },
+        {
+          "tables": [
+            "order_items",
+            "products"
+          ],
+          "count": 1
+        }
+      ],
+      "co_access": [
+        {
+          "tables": [
+            "order_items",
+            "orders"
+          ],
+          "count": 1
+        },
+        {
+          "tables": [
+            "customers",
+            "orders"
+          ],
+          "count": 1
+        },
+        {
+          "tables": [
+            "order_items",
+            "products"
+          ],
+          "count": 1
+        }
+      ],
+      "filters": [
+        {
+          "table": "orders",
+          "column": "customer_id",
+          "count": 1
+        },
+        {
+          "table": "customers",
+          "column": "customer_id",
+          "count": 1
+        }
+      ],
+      "sorts": [
+        {
+          "table": "orders",
+          "column": "order_date",
+          "count": 1
+        },
+        {
+          "table": "products",
+          "column": "name",
+          "count": 1
+        }
+      ],
+      "groups": [
+        {
+          "table": "products",
+          "column": "product_id",
+          "count": 1
+        },
+        {
+          "table": "products",
+          "column": "name",
+          "count": 1
+        }
+      ]
+    },
+    "created_at": {
+      "$date": "2026-09-25T17:42:25.241Z"
+    }
+  }
+]

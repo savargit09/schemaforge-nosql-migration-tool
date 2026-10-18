@@ -1,0 +1,28 @@
+[
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd7297e6"
+    },
+    "name": "Order Management Demonstration",
+    "description": "Deterministic seed dataset for relational-to-document schema design.",
+    "created_at": {
+      "$date": "2026-09-25T17:38:04.596Z"
+    },
+    "updated_at": {
+      "$date": "2026-09-25T17:38:04.596Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b1d80f214b9d4adfe4dc"
+    },
+    "name": "Order Management Migration",
+    "description": "Generated from the submitted migration input.",
+    "created_at": {
+      "$date": "2026-09-25T17:39:36.785Z"
+    },
+    "updated_at": {
+      "$date": "2026-09-25T17:39:36.785Z"
+    }
+  }
+]

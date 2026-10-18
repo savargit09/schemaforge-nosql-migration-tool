@@ -1,0 +1,137 @@
+[
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd7297e7"
+    },
+    "customer_id": 1,
+    "name": "Customer 01",
+    "email": "customer01@example.test",
+    "city": "Chennai"
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd7297e8"
+    },
+    "customer_id": 2,
+    "name": "Customer 02",
+    "email": "customer02@example.test",
+    "city": "Bengaluru"
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd7297e9"
+    },
+    "customer_id": 3,
+    "name": "Customer 03",
+    "email": "customer03@example.test",
+    "city": "Vellore"
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd7297ea"
+    },
+    "customer_id": 4,
+    "name": "Customer 04",
+    "email": "customer04@example.test",
+    "city": "Chennai"
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd7297eb"
+    },
+    "customer_id": 5,
+    "name": "Customer 05",
+    "email": "customer05@example.test",
+    "city": "Bengaluru"
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd7297ec"
+    },
+    "customer_id": 6,
+    "name": "Customer 06",
+    "email": "customer06@example.test",
+    "city": "Vellore"
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd7297ed"
+    },
+    "customer_id": 7,
+    "name": "Customer 07",
+    "email": "customer07@example.test",
+    "city": "Chennai"
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd7297ee"
+    },
+    "customer_id": 8,
+    "name": "Customer 08",
+    "email": "customer08@example.test",
+    "city": "Bengaluru"
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd7297ef"
+    },
+    "customer_id": 9,
+    "name": "Customer 09",
+    "email": "customer09@example.test",
+    "city": "Vellore"
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd7297f0"
+    },
+    "customer_id": 10,
+    "name": "Customer 10",
+    "email": "customer10@example.test",
+    "city": "Chennai"
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd7297f1"
+    },
+    "customer_id": 11,
+    "name": "Customer 11",
+    "email": "customer11@example.test",
+    "city": "Bengaluru"
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd7297f2"
+    },
+    "customer_id": 12,
+    "name": "Customer 12",
+    "email": "customer12@example.test",
+    "city": "Vellore"
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd7297f3"
+    },
+    "customer_id": 13,
+    "name": "Customer 13",
+    "email": "customer13@example.test",
+    "city": "Chennai"
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd7297f4"
+    },
+    "customer_id": 14,
+    "name": "Customer 14",
+    "email": "customer14@example.test",
+    "city": "Bengaluru"
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd7297f5"
+    },
+    "customer_id": 15,
+    "name": "Customer 15",
+    "email": "customer15@example.test",
+    "city": "Vellore"
+  }
+]

@@ -1,0 +1,962 @@
+[
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd72980a"
+    },
+    "order_id": 1,
+    "customer_id": 1,
+    "order_date": "2026-09-24",
+    "status": "SHIPPED",
+    "order_total": 86.0,
+    "items": [
+      {
+        "product_id": 2,
+        "name": "Product 02",
+        "quantity": 1,
+        "unit_price": 26.5
+      },
+      {
+        "product_id": 3,
+        "name": "Product 03",
+        "quantity": 2,
+        "unit_price": 29.75
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd72980b"
+    },
+    "order_id": 2,
+    "customer_id": 2,
+    "order_date": "2026-09-23",
+    "status": "DELIVERED",
+    "order_total": 230.5,
+    "items": [
+      {
+        "product_id": 3,
+        "name": "Product 03",
+        "quantity": 1,
+        "unit_price": 29.75
+      },
+      {
+        "product_id": 5,
+        "name": "Product 05",
+        "quantity": 2,
+        "unit_price": 36.25
+      },
+      {
+        "product_id": 7,
+        "name": "Product 07",
+        "quantity": 3,
+        "unit_price": 42.75
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd72980c"
+    },
+    "order_id": 3,
+    "customer_id": 3,
+    "order_date": "2026-09-22",
+    "status": "PLACED",
+    "order_total": 33.0,
+    "items": [
+      {
+        "product_id": 4,
+        "name": "Product 04",
+        "quantity": 1,
+        "unit_price": 33.0
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd72980d"
+    },
+    "order_id": 4,
+    "customer_id": 4,
+    "order_date": "2026-09-21",
+    "status": "SHIPPED",
+    "order_total": 134.75,
+    "items": [
+      {
+        "product_id": 5,
+        "name": "Product 05",
+        "quantity": 1,
+        "unit_price": 36.25
+      },
+      {
+        "product_id": 9,
+        "name": "Product 09",
+        "quantity": 2,
+        "unit_price": 49.25
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd72980e"
+    },
+    "order_id": 5,
+    "customer_id": 5,
+    "order_date": "2026-09-20",
+    "status": "DELIVERED",
+    "order_total": 367.0,
+    "items": [
+      {
+        "product_id": 6,
+        "name": "Product 06",
+        "quantity": 1,
+        "unit_price": 39.5
+      },
+      {
+        "product_id": 11,
+        "name": "Product 11",
+        "quantity": 2,
+        "unit_price": 55.75
+      },
+      {
+        "product_id": 16,
+        "name": "Product 16",
+        "quantity": 3,
+        "unit_price": 72.0
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd72980f"
+    },
+    "order_id": 6,
+    "customer_id": 6,
+    "order_date": "2026-09-19",
+    "status": "PLACED",
+    "order_total": 42.75,
+    "items": [
+      {
+        "product_id": 7,
+        "name": "Product 07",
+        "quantity": 1,
+        "unit_price": 42.75
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd729810"
+    },
+    "order_id": 7,
+    "customer_id": 7,
+    "order_date": "2026-09-18",
+    "status": "SHIPPED",
+    "order_total": 183.5,
+    "items": [
+      {
+        "product_id": 8,
+        "name": "Product 08",
+        "quantity": 1,
+        "unit_price": 46.0
+      },
+      {
+        "product_id": 15,
+        "name": "Product 15",
+        "quantity": 2,
+        "unit_price": 68.75
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd729811"
+    },
+    "order_id": 8,
+    "customer_id": 8,
+    "order_date": "2026-09-17",
+    "status": "DELIVERED",
+    "order_total": 308.5,
+    "items": [
+      {
+        "product_id": 9,
+        "name": "Product 09",
+        "quantity": 1,
+        "unit_price": 49.25
+      },
+      {
+        "product_id": 17,
+        "name": "Product 17",
+        "quantity": 2,
+        "unit_price": 75.25
+      },
+      {
+        "product_id": 5,
+        "name": "Product 05",
+        "quantity": 3,
+        "unit_price": 36.25
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd729812"
+    },
+    "order_id": 9,
+    "customer_id": 9,
+    "order_date": "2026-09-16",
+    "status": "PLACED",
+    "order_total": 52.5,
+    "items": [
+      {
+        "product_id": 10,
+        "name": "Product 10",
+        "quantity": 1,
+        "unit_price": 52.5
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd729813"
+    },
+    "order_id": 10,
+    "customer_id": 10,
+    "order_date": "2026-09-15",
+    "status": "SHIPPED",
+    "order_total": 102.25,
+    "items": [
+      {
+        "product_id": 11,
+        "name": "Product 11",
+        "quantity": 1,
+        "unit_price": 55.75
+      },
+      {
+        "product_id": 1,
+        "name": "Product 01",
+        "quantity": 2,
+        "unit_price": 23.25
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd729814"
+    },
+    "order_id": 11,
+    "customer_id": 11,
+    "order_date": "2026-09-14",
+    "status": "DELIVERED",
+    "order_total": 315.0,
+    "items": [
+      {
+        "product_id": 12,
+        "name": "Product 12",
+        "quantity": 1,
+        "unit_price": 59.0
+      },
+      {
+        "product_id": 3,
+        "name": "Product 03",
+        "quantity": 2,
+        "unit_price": 29.75
+      },
+      {
+        "product_id": 14,
+        "name": "Product 14",
+        "quantity": 3,
+        "unit_price": 65.5
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd729815"
+    },
+    "order_id": 12,
+    "customer_id": 12,
+    "order_date": "2026-09-13",
+    "status": "PLACED",
+    "order_total": 62.25,
+    "items": [
+      {
+        "product_id": 13,
+        "name": "Product 13",
+        "quantity": 1,
+        "unit_price": 62.25
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd729816"
+    },
+    "order_id": 13,
+    "customer_id": 13,
+    "order_date": "2026-09-12",
+    "status": "SHIPPED",
+    "order_total": 151.0,
+    "items": [
+      {
+        "product_id": 14,
+        "name": "Product 14",
+        "quantity": 1,
+        "unit_price": 65.5
+      },
+      {
+        "product_id": 7,
+        "name": "Product 07",
+        "quantity": 2,
+        "unit_price": 42.75
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd729817"
+    },
+    "order_id": 14,
+    "customer_id": 14,
+    "order_date": "2026-09-11",
+    "status": "DELIVERED",
+    "order_total": 256.5,
+    "items": [
+      {
+        "product_id": 15,
+        "name": "Product 15",
+        "quantity": 1,
+        "unit_price": 68.75
+      },
+      {
+        "product_id": 9,
+        "name": "Product 09",
+        "quantity": 2,
+        "unit_price": 49.25
+      },
+      {
+        "product_id": 3,
+        "name": "Product 03",
+        "quantity": 3,
+        "unit_price": 29.75
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd729818"
+    },
+    "order_id": 15,
+    "customer_id": 15,
+    "order_date": "2026-09-10",
+    "status": "PLACED",
+    "order_total": 72.0,
+    "items": [
+      {
+        "product_id": 16,
+        "name": "Product 16",
+        "quantity": 1,
+        "unit_price": 72.0
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd729819"
+    },
+    "order_id": 16,
+    "customer_id": 1,
+    "order_date": "2026-09-09",
+    "status": "SHIPPED",
+    "order_total": 199.75,
+    "items": [
+      {
+        "product_id": 17,
+        "name": "Product 17",
+        "quantity": 1,
+        "unit_price": 75.25
+      },
+      {
+        "product_id": 13,
+        "name": "Product 13",
+        "quantity": 2,
+        "unit_price": 62.25
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd72981a"
+    },
+    "order_id": 17,
+    "customer_id": 2,
+    "order_date": "2026-09-08",
+    "status": "DELIVERED",
+    "order_total": 393.0,
+    "items": [
+      {
+        "product_id": 18,
+        "name": "Product 18",
+        "quantity": 1,
+        "unit_price": 78.5
+      },
+      {
+        "product_id": 15,
+        "name": "Product 15",
+        "quantity": 2,
+        "unit_price": 68.75
+      },
+      {
+        "product_id": 12,
+        "name": "Product 12",
+        "quantity": 3,
+        "unit_price": 59.0
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd72981b"
+    },
+    "order_id": 18,
+    "customer_id": 3,
+    "order_date": "2026-09-07",
+    "status": "PLACED",
+    "order_total": 81.75,
+    "items": [
+      {
+        "product_id": 19,
+        "name": "Product 19",
+        "quantity": 1,
+        "unit_price": 81.75
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd72981c"
+    },
+    "order_id": 19,
+    "customer_id": 4,
+    "order_date": "2026-09-06",
+    "status": "SHIPPED",
+    "order_total": 248.5,
+    "items": [
+      {
+        "product_id": 20,
+        "name": "Product 20",
+        "quantity": 1,
+        "unit_price": 85.0
+      },
+      {
+        "product_id": 19,
+        "name": "Product 19",
+        "quantity": 2,
+        "unit_price": 81.75
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd72981d"
+    },
+    "order_id": 20,
+    "customer_id": 5,
+    "order_date": "2026-09-05",
+    "status": "DELIVERED",
+    "order_total": 139.5,
+    "items": [
+      {
+        "product_id": 1,
+        "name": "Product 01",
+        "quantity": 1,
+        "unit_price": 23.25
+      },
+      {
+        "product_id": 1,
+        "name": "Product 01",
+        "quantity": 2,
+        "unit_price": 23.25
+      },
+      {
+        "product_id": 1,
+        "name": "Product 01",
+        "quantity": 3,
+        "unit_price": 23.25
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd72981e"
+    },
+    "order_id": 21,
+    "customer_id": 6,
+    "order_date": "2026-09-04",
+    "status": "PLACED",
+    "order_total": 26.5,
+    "items": [
+      {
+        "product_id": 2,
+        "name": "Product 02",
+        "quantity": 1,
+        "unit_price": 26.5
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd72981f"
+    },
+    "order_id": 22,
+    "customer_id": 7,
+    "order_date": "2026-09-03",
+    "status": "SHIPPED",
+    "order_total": 102.25,
+    "items": [
+      {
+        "product_id": 3,
+        "name": "Product 03",
+        "quantity": 1,
+        "unit_price": 29.75
+      },
+      {
+        "product_id": 5,
+        "name": "Product 05",
+        "quantity": 2,
+        "unit_price": 36.25
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd729820"
+    },
+    "order_id": 23,
+    "customer_id": 8,
+    "order_date": "2026-09-02",
+    "status": "DELIVERED",
+    "order_total": 276.0,
+    "items": [
+      {
+        "product_id": 4,
+        "name": "Product 04",
+        "quantity": 1,
+        "unit_price": 33.0
+      },
+      {
+        "product_id": 7,
+        "name": "Product 07",
+        "quantity": 2,
+        "unit_price": 42.75
+      },
+      {
+        "product_id": 10,
+        "name": "Product 10",
+        "quantity": 3,
+        "unit_price": 52.5
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd729821"
+    },
+    "order_id": 24,
+    "customer_id": 9,
+    "order_date": "2026-09-01",
+    "status": "PLACED",
+    "order_total": 36.25,
+    "items": [
+      {
+        "product_id": 5,
+        "name": "Product 05",
+        "quantity": 1,
+        "unit_price": 36.25
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd729822"
+    },
+    "order_id": 25,
+    "customer_id": 10,
+    "order_date": "2026-08-31",
+    "status": "SHIPPED",
+    "order_total": 151.0,
+    "items": [
+      {
+        "product_id": 6,
+        "name": "Product 06",
+        "quantity": 1,
+        "unit_price": 39.5
+      },
+      {
+        "product_id": 11,
+        "name": "Product 11",
+        "quantity": 2,
+        "unit_price": 55.75
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd729823"
+    },
+    "order_id": 26,
+    "customer_id": 11,
+    "order_date": "2026-08-30",
+    "status": "DELIVERED",
+    "order_total": 412.5,
+    "items": [
+      {
+        "product_id": 7,
+        "name": "Product 07",
+        "quantity": 1,
+        "unit_price": 42.75
+      },
+      {
+        "product_id": 13,
+        "name": "Product 13",
+        "quantity": 2,
+        "unit_price": 62.25
+      },
+      {
+        "product_id": 19,
+        "name": "Product 19",
+        "quantity": 3,
+        "unit_price": 81.75
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd729824"
+    },
+    "order_id": 27,
+    "customer_id": 12,
+    "order_date": "2026-08-29",
+    "status": "PLACED",
+    "order_total": 46.0,
+    "items": [
+      {
+        "product_id": 8,
+        "name": "Product 08",
+        "quantity": 1,
+        "unit_price": 46.0
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd729825"
+    },
+    "order_id": 28,
+    "customer_id": 13,
+    "order_date": "2026-08-28",
+    "status": "SHIPPED",
+    "order_total": 199.75,
+    "items": [
+      {
+        "product_id": 9,
+        "name": "Product 09",
+        "quantity": 1,
+        "unit_price": 49.25
+      },
+      {
+        "product_id": 17,
+        "name": "Product 17",
+        "quantity": 2,
+        "unit_price": 75.25
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd729826"
+    },
+    "order_id": 29,
+    "customer_id": 14,
+    "order_date": "2026-08-27",
+    "status": "DELIVERED",
+    "order_total": 354.0,
+    "items": [
+      {
+        "product_id": 10,
+        "name": "Product 10",
+        "quantity": 1,
+        "unit_price": 52.5
+      },
+      {
+        "product_id": 19,
+        "name": "Product 19",
+        "quantity": 2,
+        "unit_price": 81.75
+      },
+      {
+        "product_id": 8,
+        "name": "Product 08",
+        "quantity": 3,
+        "unit_price": 46.0
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd729827"
+    },
+    "order_id": 30,
+    "customer_id": 15,
+    "order_date": "2026-08-26",
+    "status": "PLACED",
+    "order_total": 55.75,
+    "items": [
+      {
+        "product_id": 11,
+        "name": "Product 11",
+        "quantity": 1,
+        "unit_price": 55.75
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd729828"
+    },
+    "order_id": 31,
+    "customer_id": 1,
+    "order_date": "2026-08-25",
+    "status": "SHIPPED",
+    "order_total": 118.5,
+    "items": [
+      {
+        "product_id": 12,
+        "name": "Product 12",
+        "quantity": 1,
+        "unit_price": 59.0
+      },
+      {
+        "product_id": 3,
+        "name": "Product 03",
+        "quantity": 2,
+        "unit_price": 29.75
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd729829"
+    },
+    "order_id": 32,
+    "customer_id": 2,
+    "order_date": "2026-08-24",
+    "status": "DELIVERED",
+    "order_total": 360.5,
+    "items": [
+      {
+        "product_id": 13,
+        "name": "Product 13",
+        "quantity": 1,
+        "unit_price": 62.25
+      },
+      {
+        "product_id": 5,
+        "name": "Product 05",
+        "quantity": 2,
+        "unit_price": 36.25
+      },
+      {
+        "product_id": 17,
+        "name": "Product 17",
+        "quantity": 3,
+        "unit_price": 75.25
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd72982a"
+    },
+    "order_id": 33,
+    "customer_id": 3,
+    "order_date": "2026-08-23",
+    "status": "PLACED",
+    "order_total": 65.5,
+    "items": [
+      {
+        "product_id": 14,
+        "name": "Product 14",
+        "quantity": 1,
+        "unit_price": 65.5
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd72982b"
+    },
+    "order_id": 34,
+    "customer_id": 4,
+    "order_date": "2026-08-22",
+    "status": "SHIPPED",
+    "order_total": 167.25,
+    "items": [
+      {
+        "product_id": 15,
+        "name": "Product 15",
+        "quantity": 1,
+        "unit_price": 68.75
+      },
+      {
+        "product_id": 9,
+        "name": "Product 09",
+        "quantity": 2,
+        "unit_price": 49.25
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd72982c"
+    },
+    "order_id": 35,
+    "customer_id": 5,
+    "order_date": "2026-08-21",
+    "status": "DELIVERED",
+    "order_total": 302.0,
+    "items": [
+      {
+        "product_id": 16,
+        "name": "Product 16",
+        "quantity": 1,
+        "unit_price": 72.0
+      },
+      {
+        "product_id": 11,
+        "name": "Product 11",
+        "quantity": 2,
+        "unit_price": 55.75
+      },
+      {
+        "product_id": 6,
+        "name": "Product 06",
+        "quantity": 3,
+        "unit_price": 39.5
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd72982d"
+    },
+    "order_id": 36,
+    "customer_id": 6,
+    "order_date": "2026-08-20",
+    "status": "PLACED",
+    "order_total": 75.25,
+    "items": [
+      {
+        "product_id": 17,
+        "name": "Product 17",
+        "quantity": 1,
+        "unit_price": 75.25
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd72982e"
+    },
+    "order_id": 37,
+    "customer_id": 7,
+    "order_date": "2026-08-19",
+    "status": "SHIPPED",
+    "order_total": 216.0,
+    "items": [
+      {
+        "product_id": 18,
+        "name": "Product 18",
+        "quantity": 1,
+        "unit_price": 78.5
+      },
+      {
+        "product_id": 15,
+        "name": "Product 15",
+        "quantity": 2,
+        "unit_price": 68.75
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd72982f"
+    },
+    "order_id": 38,
+    "customer_id": 8,
+    "order_date": "2026-08-18",
+    "status": "DELIVERED",
+    "order_total": 438.5,
+    "items": [
+      {
+        "product_id": 19,
+        "name": "Product 19",
+        "quantity": 1,
+        "unit_price": 81.75
+      },
+      {
+        "product_id": 17,
+        "name": "Product 17",
+        "quantity": 2,
+        "unit_price": 75.25
+      },
+      {
+        "product_id": 15,
+        "name": "Product 15",
+        "quantity": 3,
+        "unit_price": 68.75
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd729830"
+    },
+    "order_id": 39,
+    "customer_id": 9,
+    "order_date": "2026-08-17",
+    "status": "PLACED",
+    "order_total": 85.0,
+    "items": [
+      {
+        "product_id": 20,
+        "name": "Product 20",
+        "quantity": 1,
+        "unit_price": 85.0
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd729831"
+    },
+    "order_id": 40,
+    "customer_id": 10,
+    "order_date": "2026-08-16",
+    "status": "SHIPPED",
+    "order_total": 69.75,
+    "items": [
+      {
+        "product_id": 1,
+        "name": "Product 01",
+        "quantity": 1,
+        "unit_price": 23.25
+      },
+      {
+        "product_id": 1,
+        "name": "Product 01",
+        "quantity": 2,
+        "unit_price": 23.25
+      }
+    ]
+  }
+]

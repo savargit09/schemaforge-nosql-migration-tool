@@ -1,0 +1,1108 @@
+[
+  {
+    "_id": {
+      "$oid": "6ab6b1d80f214b9d4adfe4dd"
+    },
+    "project_id": {
+      "$oid": "6ab6b1d80f214b9d4adfe4dc"
+    },
+    "project_name": "Order Management Migration",
+    "status": "completed",
+    "created_at": {
+      "$date": "2026-09-25T17:39:36.785Z"
+    },
+    "input": {
+      "project_name": "Order Management Migration",
+      "ddl": "CREATE TABLE customers (customer_id INT PRIMARY KEY, name VARCHAR(100) NOT NULL, email VARCHAR(160), city VARCHAR(80));\nCREATE TABLE products (product_id INT PRIMARY KEY, name VARCHAR(120), category VARCHAR(80), unit_price DECIMAL(10,2));\nCREATE TABLE orders (order_id INT PRIMARY KEY, customer_id INT NOT NULL, order_date DATE, status VARCHAR(30), order_total DECIMAL(12,2), CONSTRAINT fk_orders_customer FOREIGN KEY (customer_id) REFERENCES customers(customer_id));\nCREATE TABLE order_items (item_id INT PRIMARY KEY, order_id INT NOT NULL, product_id INT NOT NULL, quantity INT, unit_price DECIMAL(10,2), CONSTRAINT fk_items_order FOREIGN KEY (order_id) REFERENCES orders(order_id), CONSTRAINT fk_items_product FOREIGN KEY (product_id) REFERENCES products(product_id));",
+      "queries": [
+        "SELECT o.order_id, o.order_date, o.status, i.quantity FROM orders o JOIN order_items i ON o.order_id=i.order_id WHERE o.customer_id=3 ORDER BY o.order_date DESC",
+        "SELECT c.customer_id, c.name, o.order_id FROM customers c JOIN orders o ON c.customer_id=o.customer_id WHERE c.customer_id=3",
+        "SELECT p.product_id, p.name, SUM(i.quantity) FROM products p JOIN order_items i ON p.product_id=i.product_id GROUP BY p.product_id, p.name ORDER BY p.name"
+      ],
+      "row_counts": {
+        "customers": 15,
+        "products": 20,
+        "orders": 40,
+        "order_items": 80
+      },
+      "overrides": {}
+    },
+    "result": {
+      "recommendations": [
+        {
+          "relationship": "customers->orders",
+          "parent": "customers",
+          "child": "orders",
+          "foreign_key": [
+            "customer_id"
+          ],
+          "decision": "REFERENCE",
+          "cardinality": "one-to-few",
+          "fanout": 2.67,
+          "co_access_count": 1,
+          "child_access_count": 2,
+          "parent_access_count": 1,
+          "evidence": [
+            "Estimated child/parent row ratio: 2.67 (one-to-few).",
+            "Queries co-accessing customers and orders: 1 of 3.",
+            "Independent table accesses: orders=2, customers=1."
+          ],
+          "reason": "High or unknown fan-out risks unbounded parent documents; independent child access also favors a reference.",
+          "benefit": "Bounds document growth and avoids duplicating independently maintained child records.",
+          "tradeoff": "Reads that need both entities require an additional reference resolution."
+        },
+        {
+          "relationship": "orders->order_items",
+          "parent": "orders",
+          "child": "order_items",
+          "foreign_key": [
+            "order_id"
+          ],
+          "decision": "EMBED",
+          "cardinality": "one-to-few",
+          "fanout": 2.0,
+          "co_access_count": 1,
+          "child_access_count": 2,
+          "parent_access_count": 2,
+          "evidence": [
+            "Estimated child/parent row ratio: 2.0 (one-to-few).",
+            "Queries co-accessing orders and order_items: 1 of 3.",
+            "Independent table accesses: order_items=2, orders=2."
+          ],
+          "reason": "The relationship is retrieved together by the workload and estimated fan-out is bounded, so embedding can avoid a separate lookup.",
+          "benefit": "Avoids a separate relationship lookup on co-accessed reads.",
+          "tradeoff": "Parent documents grow; updating child values may require rewriting the parent."
+        },
+        {
+          "relationship": "products->order_items",
+          "parent": "products",
+          "child": "order_items",
+          "foreign_key": [
+            "product_id"
+          ],
+          "decision": "REFERENCE",
+          "cardinality": "one-to-few",
+          "fanout": 4.0,
+          "co_access_count": 1,
+          "child_access_count": 2,
+          "parent_access_count": 1,
+          "evidence": [
+            "Estimated child/parent row ratio: 4.0 (one-to-few).",
+            "Queries co-accessing products and order_items: 1 of 3.",
+            "Independent table accesses: order_items=2, products=1."
+          ],
+          "reason": "High or unknown fan-out risks unbounded parent documents; independent child access also favors a reference.",
+          "benefit": "Bounds document growth and avoids duplicating independently maintained child records.",
+          "tradeoff": "Reads that need both entities require an additional reference resolution."
+        }
+      ],
+      "graph": {
+        "nodes": [
+          {
+            "id": "customers",
+            "label": "customers",
+            "columns": 4
+          },
+          {
+            "id": "products",
+            "label": "products",
+            "columns": 4
+          },
+          {
+            "id": "orders",
+            "label": "orders",
+            "columns": 5
+          },
+          {
+            "id": "order_items",
+            "label": "order_items",
+            "columns": 5
+          }
+        ],
+        "edges": [
+          {
+            "source": "customers",
+            "target": "orders",
+            "decision": "REFERENCE",
+            "fanout": 2.67
+          },
+          {
+            "source": "orders",
+            "target": "order_items",
+            "decision": "EMBED",
+            "fanout": 2.0
+          },
+          {
+            "source": "products",
+            "target": "order_items",
+            "decision": "REFERENCE",
+            "fanout": 4.0
+          }
+        ]
+      },
+      "mongo_schema": {
+        "database": "nosql_migration_tool",
+        "collections": [
+          {
+            "name": "customers",
+            "fields": {
+              "customer_id": "Int32/Int64",
+              "name": "String",
+              "email": "String",
+              "city": "String"
+            },
+            "embedded": [],
+            "indexes": [
+              {
+                "field": "customer_id",
+                "direction": 1,
+                "reason": "Supports workload filter access."
+              },
+              {
+                "field": "customer_id",
+                "direction": 1,
+                "reason": "Supports workload primary key access."
+              }
+            ]
+          },
+          {
+            "name": "products",
+            "fields": {
+              "product_id": "Int32/Int64",
+              "name": "String",
+              "category": "String",
+              "unit_price": "Decimal128/Double"
+            },
+            "embedded": [],
+            "indexes": [
+              {
+                "field": "name",
+                "direction": 1,
+                "reason": "Supports workload sort access."
+              },
+              {
+                "field": "product_id",
+                "direction": 1,
+                "reason": "Supports workload primary key access."
+              }
+            ]
+          },
+          {
+            "name": "orders",
+            "fields": {
+              "order_id": "Int32/Int64",
+              "customer_id": "ObjectId (reference)",
+              "order_date": "Date",
+              "status": "String",
+              "order_total": "Decimal128/Double"
+            },
+            "embedded": [
+              {
+                "name": "order_items",
+                "array": true,
+                "fields": {
+                  "product_id": "Int32/Int64",
+                  "quantity": "Int32/Int64",
+                  "unit_price": "Decimal128/Double"
+                }
+              }
+            ],
+            "indexes": [
+              {
+                "field": "customer_id",
+                "direction": 1,
+                "reason": "Supports workload filter access."
+              },
+              {
+                "field": "order_date",
+                "direction": 1,
+                "reason": "Supports workload sort access."
+              },
+              {
+                "field": "order_id",
+                "direction": 1,
+                "reason": "Supports workload primary key access."
+              }
+            ]
+          },
+          {
+            "name": "order_items",
+            "fields": {
+              "item_id": "Int32/Int64",
+              "order_id": "Int32/Int64",
+              "product_id": "ObjectId (reference)",
+              "quantity": "Int32/Int64",
+              "unit_price": "Decimal128/Double"
+            },
+            "embedded": [],
+            "indexes": [
+              {
+                "field": "item_id",
+                "direction": 1,
+                "reason": "Supports workload primary key access."
+              }
+            ]
+          }
+        ]
+      },
+      "cost_summary": {
+        "relationships": 3,
+        "embedded_relationships": 1,
+        "referenced_relationships": 2,
+        "workload_join_occurrences": 3,
+        "logical_fetches_avoided_estimate": 1,
+        "read_cost": "lower for co-access paths selected for embedding; heuristic estimate",
+        "write_cost": "higher consistency/update fan-out for duplicated or embedded fields",
+        "formula": "logical fetches avoided is bounded by min(embedded relationships, parsed join occurrences); this is a comparative heuristic, not a latency benchmark."
+      },
+      "parsed_schema": {
+        "tables": [
+          {
+            "name": "customers",
+            "columns": [
+              {
+                "name": "customer_id",
+                "type": "INT",
+                "nullable": true
+              },
+              {
+                "name": "name",
+                "type": "VARCHAR(100)",
+                "nullable": true
+              },
+              {
+                "name": "email",
+                "type": "VARCHAR(160)",
+                "nullable": true
+              },
+              {
+                "name": "city",
+                "type": "VARCHAR(80)",
+                "nullable": true
+              }
+            ],
+            "primary_key": [
+              "customer_id"
+            ],
+            "foreign_keys": []
+          },
+          {
+            "name": "products",
+            "columns": [
+              {
+                "name": "product_id",
+                "type": "INT",
+                "nullable": true
+              },
+              {
+                "name": "name",
+                "type": "VARCHAR(120)",
+                "nullable": true
+              },
+              {
+                "name": "category",
+                "type": "VARCHAR(80)",
+                "nullable": true
+              },
+              {
+                "name": "unit_price",
+                "type": "DECIMAL(10, 2)",
+                "nullable": true
+              }
+            ],
+            "primary_key": [
+              "product_id"
+            ],
+            "foreign_keys": []
+          },
+          {
+            "name": "orders",
+            "columns": [
+              {
+                "name": "order_id",
+                "type": "INT",
+                "nullable": true
+              },
+              {
+                "name": "customer_id",
+                "type": "INT",
+                "nullable": true
+              },
+              {
+                "name": "order_date",
+                "type": "DATE",
+                "nullable": true
+              },
+              {
+                "name": "status",
+                "type": "VARCHAR(30)",
+                "nullable": true
+              },
+              {
+                "name": "order_total",
+                "type": "DECIMAL(12, 2)",
+                "nullable": true
+              }
+            ],
+            "primary_key": [
+              "order_id"
+            ],
+            "foreign_keys": [
+              {
+                "columns": [
+                  "customer_id"
+                ],
+                "references_table": "customers",
+                "references_columns": [
+                  "customer_id"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "order_items",
+            "columns": [
+              {
+                "name": "item_id",
+                "type": "INT",
+                "nullable": true
+              },
+              {
+                "name": "order_id",
+                "type": "INT",
+                "nullable": true
+              },
+              {
+                "name": "product_id",
+                "type": "INT",
+                "nullable": true
+              },
+              {
+                "name": "quantity",
+                "type": "INT",
+                "nullable": true
+              },
+              {
+                "name": "unit_price",
+                "type": "DECIMAL(10, 2)",
+                "nullable": true
+              }
+            ],
+            "primary_key": [
+              "item_id"
+            ],
+            "foreign_keys": [
+              {
+                "columns": [
+                  "order_id"
+                ],
+                "references_table": "orders",
+                "references_columns": [
+                  "order_id"
+                ]
+              },
+              {
+                "columns": [
+                  "product_id"
+                ],
+                "references_table": "products",
+                "references_columns": [
+                  "product_id"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "workload": {
+        "query_count": 3,
+        "table_accesses": {
+          "order_items": 2,
+          "orders": 2,
+          "customers": 1,
+          "products": 1
+        },
+        "join_frequency": [
+          {
+            "tables": [
+              "order_items",
+              "orders"
+            ],
+            "count": 1
+          },
+          {
+            "tables": [
+              "customers",
+              "orders"
+            ],
+            "count": 1
+          },
+          {
+            "tables": [
+              "order_items",
+              "products"
+            ],
+            "count": 1
+          }
+        ],
+        "co_access": [
+          {
+            "tables": [
+              "order_items",
+              "orders"
+            ],
+            "count": 1
+          },
+          {
+            "tables": [
+              "customers",
+              "orders"
+            ],
+            "count": 1
+          },
+          {
+            "tables": [
+              "order_items",
+              "products"
+            ],
+            "count": 1
+          }
+        ],
+        "filters": [
+          {
+            "table": "orders",
+            "column": "customer_id",
+            "count": 1
+          },
+          {
+            "table": "customers",
+            "column": "customer_id",
+            "count": 1
+          }
+        ],
+        "sorts": [
+          {
+            "table": "orders",
+            "column": "order_date",
+            "count": 1
+          },
+          {
+            "table": "products",
+            "column": "name",
+            "count": 1
+          }
+        ],
+        "groups": [
+          {
+            "table": "products",
+            "column": "product_id",
+            "count": 1
+          },
+          {
+            "table": "products",
+            "column": "name",
+            "count": 1
+          }
+        ]
+      },
+      "tradeoffs": [
+        {
+          "decision": "REFERENCE",
+          "relationship": "customers->orders",
+          "evidence": [
+            "Estimated child/parent row ratio: 2.67 (one-to-few).",
+            "Queries co-accessing customers and orders: 1 of 3.",
+            "Independent table accesses: orders=2, customers=1."
+          ],
+          "benefit": "Bounds document growth and avoids duplicating independently maintained child records.",
+          "tradeoff": "Reads that need both entities require an additional reference resolution.",
+          "reason": "High or unknown fan-out risks unbounded parent documents; independent child access also favors a reference."
+        },
+        {
+          "decision": "EMBED",
+          "relationship": "orders->order_items",
+          "evidence": [
+            "Estimated child/parent row ratio: 2.0 (one-to-few).",
+            "Queries co-accessing orders and order_items: 1 of 3.",
+            "Independent table accesses: order_items=2, orders=2."
+          ],
+          "benefit": "Avoids a separate relationship lookup on co-accessed reads.",
+          "tradeoff": "Parent documents grow; updating child values may require rewriting the parent.",
+          "reason": "The relationship is retrieved together by the workload and estimated fan-out is bounded, so embedding can avoid a separate lookup."
+        },
+        {
+          "decision": "REFERENCE",
+          "relationship": "products->order_items",
+          "evidence": [
+            "Estimated child/parent row ratio: 4.0 (one-to-few).",
+            "Queries co-accessing products and order_items: 1 of 3.",
+            "Independent table accesses: order_items=2, products=1."
+          ],
+          "benefit": "Bounds document growth and avoids duplicating independently maintained child records.",
+          "tradeoff": "Reads that need both entities require an additional reference resolution.",
+          "reason": "High or unknown fan-out risks unbounded parent documents; independent child access also favors a reference."
+        }
+      ]
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b2814599ac0b6b3c14c0"
+    },
+    "project_id": {
+      "$oid": "6ab6b1d80f214b9d4adfe4dc"
+    },
+    "project_name": "Order Management Migration",
+    "status": "completed",
+    "created_at": {
+      "$date": "2026-09-25T17:42:25.241Z"
+    },
+    "input": {
+      "project_name": "Order Management Migration",
+      "ddl": "CREATE TABLE customers (customer_id INT PRIMARY KEY, name VARCHAR(100) NOT NULL, email VARCHAR(160), city VARCHAR(80));\nCREATE TABLE products (product_id INT PRIMARY KEY, name VARCHAR(120), category VARCHAR(80), unit_price DECIMAL(10,2));\nCREATE TABLE orders (order_id INT PRIMARY KEY, customer_id INT NOT NULL, order_date DATE, status VARCHAR(30), order_total DECIMAL(12,2), CONSTRAINT fk_orders_customer FOREIGN KEY (customer_id) REFERENCES customers(customer_id));\nCREATE TABLE order_items (item_id INT PRIMARY KEY, order_id INT NOT NULL, product_id INT NOT NULL, quantity INT, unit_price DECIMAL(10,2), CONSTRAINT fk_items_order FOREIGN KEY (order_id) REFERENCES orders(order_id), CONSTRAINT fk_items_product FOREIGN KEY (product_id) REFERENCES products(product_id));",
+      "queries": [
+        "SELECT o.order_id, o.order_date, o.status, i.quantity FROM orders o JOIN order_items i ON o.order_id=i.order_id WHERE o.customer_id=3 ORDER BY o.order_date DESC",
+        "SELECT c.customer_id, c.name, o.order_id FROM customers c JOIN orders o ON c.customer_id=o.customer_id WHERE c.customer_id=3",
+        "SELECT p.product_id, p.name, SUM(i.quantity) FROM products p JOIN order_items i ON p.product_id=i.product_id GROUP BY p.product_id, p.name ORDER BY p.name"
+      ],
+      "row_counts": {
+        "customers": 15,
+        "products": 20,
+        "orders": 40,
+        "order_items": 80
+      },
+      "overrides": {
+        "customers->orders": "EMBED"
+      }
+    },
+    "result": {
+      "recommendations": [
+        {
+          "relationship": "customers->orders",
+          "parent": "customers",
+          "child": "orders",
+          "foreign_key": [
+            "customer_id"
+          ],
+          "decision": "EMBED",
+          "cardinality": "one-to-few",
+          "fanout": 2.67,
+          "co_access_count": 1,
+          "child_access_count": 2,
+          "parent_access_count": 1,
+          "evidence": [
+            "Estimated child/parent row ratio: 2.67 (one-to-few).",
+            "Queries co-accessing customers and orders: 1 of 3.",
+            "Independent table accesses: orders=2, customers=1."
+          ],
+          "reason": "The relationship is retrieved together by the workload and estimated fan-out is bounded, so embedding can avoid a separate lookup.",
+          "benefit": "Avoids a separate relationship lookup on co-accessed reads.",
+          "tradeoff": "Parent documents grow; updating child values may require rewriting the parent."
+        },
+        {
+          "relationship": "orders->order_items",
+          "parent": "orders",
+          "child": "order_items",
+          "foreign_key": [
+            "order_id"
+          ],
+          "decision": "EMBED",
+          "cardinality": "one-to-few",
+          "fanout": 2.0,
+          "co_access_count": 1,
+          "child_access_count": 2,
+          "parent_access_count": 2,
+          "evidence": [
+            "Estimated child/parent row ratio: 2.0 (one-to-few).",
+            "Queries co-accessing orders and order_items: 1 of 3.",
+            "Independent table accesses: order_items=2, orders=2."
+          ],
+          "reason": "The relationship is retrieved together by the workload and estimated fan-out is bounded, so embedding can avoid a separate lookup.",
+          "benefit": "Avoids a separate relationship lookup on co-accessed reads.",
+          "tradeoff": "Parent documents grow; updating child values may require rewriting the parent."
+        },
+        {
+          "relationship": "products->order_items",
+          "parent": "products",
+          "child": "order_items",
+          "foreign_key": [
+            "product_id"
+          ],
+          "decision": "REFERENCE",
+          "cardinality": "one-to-few",
+          "fanout": 4.0,
+          "co_access_count": 1,
+          "child_access_count": 2,
+          "parent_access_count": 1,
+          "evidence": [
+            "Estimated child/parent row ratio: 4.0 (one-to-few).",
+            "Queries co-accessing products and order_items: 1 of 3.",
+            "Independent table accesses: order_items=2, products=1."
+          ],
+          "reason": "Independent child access exceeds observed co-access, so referencing keeps the child separately addressable and limits unnecessary duplication.",
+          "benefit": "Bounds document growth and avoids duplicating independently maintained child records.",
+          "tradeoff": "Reads that need both entities require an additional reference resolution."
+        }
+      ],
+      "graph": {
+        "nodes": [
+          {
+            "id": "customers",
+            "label": "customers",
+            "columns": 4
+          },
+          {
+            "id": "products",
+            "label": "products",
+            "columns": 4
+          },
+          {
+            "id": "orders",
+            "label": "orders",
+            "columns": 5
+          },
+          {
+            "id": "order_items",
+            "label": "order_items",
+            "columns": 5
+          }
+        ],
+        "edges": [
+          {
+            "source": "customers",
+            "target": "orders",
+            "decision": "EMBED",
+            "fanout": 2.67
+          },
+          {
+            "source": "orders",
+            "target": "order_items",
+            "decision": "EMBED",
+            "fanout": 2.0
+          },
+          {
+            "source": "products",
+            "target": "order_items",
+            "decision": "REFERENCE",
+            "fanout": 4.0
+          }
+        ]
+      },
+      "mongo_schema": {
+        "database": "nosql_migration_tool",
+        "collections": [
+          {
+            "name": "customers",
+            "fields": {
+              "_id": "ObjectId",
+              "customer_id": "Int32/Int64",
+              "name": "String",
+              "email": "String",
+              "city": "String"
+            },
+            "embedded": [
+              {
+                "name": "orders",
+                "array": true,
+                "fields": {
+                  "order_date": "Date",
+                  "status": "String",
+                  "order_total": "Decimal128/Double"
+                }
+              }
+            ],
+            "indexes": [
+              {
+                "field": "customer_id",
+                "direction": 1,
+                "reason": "Supports workload filter, primary key access."
+              }
+            ]
+          },
+          {
+            "name": "products",
+            "fields": {
+              "_id": "ObjectId",
+              "product_id": "Int32/Int64",
+              "name": "String",
+              "category": "String",
+              "unit_price": "Decimal128/Double"
+            },
+            "embedded": [],
+            "indexes": [
+              {
+                "field": "name",
+                "direction": 1,
+                "reason": "Supports workload sort access."
+              },
+              {
+                "field": "product_id",
+                "direction": 1,
+                "reason": "Supports workload primary key access."
+              }
+            ]
+          },
+          {
+            "name": "orders",
+            "fields": {
+              "_id": "ObjectId",
+              "order_id": "Int32/Int64",
+              "customer_id": "Int32/Int64",
+              "order_date": "Date",
+              "status": "String",
+              "order_total": "Decimal128/Double"
+            },
+            "embedded": [
+              {
+                "name": "order_items",
+                "array": true,
+                "fields": {
+                  "product_id": "Int32/Int64 (reference to products.product_id)",
+                  "quantity": "Int32/Int64",
+                  "unit_price": "Decimal128/Double"
+                }
+              }
+            ],
+            "indexes": [
+              {
+                "field": "customer_id",
+                "direction": 1,
+                "reason": "Supports workload filter access."
+              },
+              {
+                "field": "order_date",
+                "direction": 1,
+                "reason": "Supports workload sort access."
+              },
+              {
+                "field": "order_id",
+                "direction": 1,
+                "reason": "Supports workload primary key access."
+              }
+            ]
+          },
+          {
+            "name": "order_items",
+            "fields": {
+              "_id": "ObjectId",
+              "item_id": "Int32/Int64",
+              "order_id": "Int32/Int64",
+              "product_id": "Int32/Int64 (reference to products.product_id)",
+              "quantity": "Int32/Int64",
+              "unit_price": "Decimal128/Double"
+            },
+            "embedded": [],
+            "indexes": [
+              {
+                "field": "item_id",
+                "direction": 1,
+                "reason": "Supports workload primary key access."
+              }
+            ]
+          }
+        ]
+      },
+      "cost_summary": {
+        "relationships": 3,
+        "embedded_relationships": 2,
+        "referenced_relationships": 1,
+        "workload_join_occurrences": 3,
+        "logical_fetches_avoided_estimate": 2,
+        "read_cost": "lower for co-access paths selected for embedding; heuristic estimate",
+        "write_cost": "higher consistency/update fan-out for duplicated or embedded fields",
+        "formula": "logical fetches avoided is bounded by min(embedded relationships, parsed join occurrences); this is a comparative heuristic, not a latency benchmark."
+      },
+      "parsed_schema": {
+        "tables": [
+          {
+            "name": "customers",
+            "columns": [
+              {
+                "name": "customer_id",
+                "type": "INT",
+                "nullable": true
+              },
+              {
+                "name": "name",
+                "type": "VARCHAR(100)",
+                "nullable": true
+              },
+              {
+                "name": "email",
+                "type": "VARCHAR(160)",
+                "nullable": true
+              },
+              {
+                "name": "city",
+                "type": "VARCHAR(80)",
+                "nullable": true
+              }
+            ],
+            "primary_key": [
+              "customer_id"
+            ],
+            "foreign_keys": []
+          },
+          {
+            "name": "products",
+            "columns": [
+              {
+                "name": "product_id",
+                "type": "INT",
+                "nullable": true
+              },
+              {
+                "name": "name",
+                "type": "VARCHAR(120)",
+                "nullable": true
+              },
+              {
+                "name": "category",
+                "type": "VARCHAR(80)",
+                "nullable": true
+              },
+              {
+                "name": "unit_price",
+                "type": "DECIMAL(10, 2)",
+                "nullable": true
+              }
+            ],
+            "primary_key": [
+              "product_id"
+            ],
+            "foreign_keys": []
+          },
+          {
+            "name": "orders",
+            "columns": [
+              {
+                "name": "order_id",
+                "type": "INT",
+                "nullable": true
+              },
+              {
+                "name": "customer_id",
+                "type": "INT",
+                "nullable": true
+              },
+              {
+                "name": "order_date",
+                "type": "DATE",
+                "nullable": true
+              },
+              {
+                "name": "status",
+                "type": "VARCHAR(30)",
+                "nullable": true
+              },
+              {
+                "name": "order_total",
+                "type": "DECIMAL(12, 2)",
+                "nullable": true
+              }
+            ],
+            "primary_key": [
+              "order_id"
+            ],
+            "foreign_keys": [
+              {
+                "columns": [
+                  "customer_id"
+                ],
+                "references_table": "customers",
+                "references_columns": [
+                  "customer_id"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "order_items",
+            "columns": [
+              {
+                "name": "item_id",
+                "type": "INT",
+                "nullable": true
+              },
+              {
+                "name": "order_id",
+                "type": "INT",
+                "nullable": true
+              },
+              {
+                "name": "product_id",
+                "type": "INT",
+                "nullable": true
+              },
+              {
+                "name": "quantity",
+                "type": "INT",
+                "nullable": true
+              },
+              {
+                "name": "unit_price",
+                "type": "DECIMAL(10, 2)",
+                "nullable": true
+              }
+            ],
+            "primary_key": [
+              "item_id"
+            ],
+            "foreign_keys": [
+              {
+                "columns": [
+                  "order_id"
+                ],
+                "references_table": "orders",
+                "references_columns": [
+                  "order_id"
+                ]
+              },
+              {
+                "columns": [
+                  "product_id"
+                ],
+                "references_table": "products",
+                "references_columns": [
+                  "product_id"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "workload": {
+        "query_count": 3,
+        "table_accesses": {
+          "order_items": 2,
+          "orders": 2,
+          "customers": 1,
+          "products": 1
+        },
+        "join_frequency": [
+          {
+            "tables": [
+              "order_items",
+              "orders"
+            ],
+            "count": 1
+          },
+          {
+            "tables": [
+              "customers",
+              "orders"
+            ],
+            "count": 1
+          },
+          {
+            "tables": [
+              "order_items",
+              "products"
+            ],
+            "count": 1
+          }
+        ],
+        "co_access": [
+          {
+            "tables": [
+              "order_items",
+              "orders"
+            ],
+            "count": 1
+          },
+          {
+            "tables": [
+              "customers",
+              "orders"
+            ],
+            "count": 1
+          },
+          {
+            "tables": [
+              "order_items",
+              "products"
+            ],
+            "count": 1
+          }
+        ],
+        "filters": [
+          {
+            "table": "orders",
+            "column": "customer_id",
+            "count": 1
+          },
+          {
+            "table": "customers",
+            "column": "customer_id",
+            "count": 1
+          }
+        ],
+        "sorts": [
+          {
+            "table": "orders",
+            "column": "order_date",
+            "count": 1
+          },
+          {
+            "table": "products",
+            "column": "name",
+            "count": 1
+          }
+        ],
+        "groups": [
+          {
+            "table": "products",
+            "column": "product_id",
+            "count": 1
+          },
+          {
+            "table": "products",
+            "column": "name",
+            "count": 1
+          }
+        ]
+      },
+      "tradeoffs": [
+        {
+          "decision": "EMBED",
+          "relationship": "customers->orders",
+          "evidence": [
+            "Estimated child/parent row ratio: 2.67 (one-to-few).",
+            "Queries co-accessing customers and orders: 1 of 3.",
+            "Independent table accesses: orders=2, customers=1."
+          ],
+          "benefit": "Avoids a separate relationship lookup on co-accessed reads.",
+          "tradeoff": "Parent documents grow; updating child values may require rewriting the parent.",
+          "reason": "The relationship is retrieved together by the workload and estimated fan-out is bounded, so embedding can avoid a separate lookup."
+        },
+        {
+          "decision": "EMBED",
+          "relationship": "orders->order_items",
+          "evidence": [
+            "Estimated child/parent row ratio: 2.0 (one-to-few).",
+            "Queries co-accessing orders and order_items: 1 of 3.",
+            "Independent table accesses: order_items=2, orders=2."
+          ],
+          "benefit": "Avoids a separate relationship lookup on co-accessed reads.",
+          "tradeoff": "Parent documents grow; updating child values may require rewriting the parent.",
+          "reason": "The relationship is retrieved together by the workload and estimated fan-out is bounded, so embedding can avoid a separate lookup."
+        },
+        {
+          "decision": "REFERENCE",
+          "relationship": "products->order_items",
+          "evidence": [
+            "Estimated child/parent row ratio: 4.0 (one-to-few).",
+            "Queries co-accessing products and order_items: 1 of 3.",
+            "Independent table accesses: order_items=2, products=1."
+          ],
+          "benefit": "Bounds document growth and avoids duplicating independently maintained child records.",
+          "tradeoff": "Reads that need both entities require an additional reference resolution.",
+          "reason": "Independent child access exceeds observed co-access, so referencing keeps the child separately addressable and limits unnecessary duplication."
+        }
+      ]
+    },
+    "updated_at": {
+      "$date": "2026-09-25T17:42:53.619Z"
+    }
+  }
+]

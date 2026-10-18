@@ -1,0 +1,12 @@
+services:
+  mongodb:
+    image: mongo:8.0
+    container_name: nosql-migration-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+volumes:
+  mongo_data:

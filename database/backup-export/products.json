@@ -1,0 +1,182 @@
+[
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd7297f6"
+    },
+    "product_id": 1,
+    "name": "Product 01",
+    "category": "Electronics",
+    "unit_price": 23.25
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd7297f7"
+    },
+    "product_id": 2,
+    "name": "Product 02",
+    "category": "Home",
+    "unit_price": 26.5
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd7297f8"
+    },
+    "product_id": 3,
+    "name": "Product 03",
+    "category": "Books",
+    "unit_price": 29.75
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd7297f9"
+    },
+    "product_id": 4,
+    "name": "Product 04",
+    "category": "Electronics",
+    "unit_price": 33.0
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd7297fa"
+    },
+    "product_id": 5,
+    "name": "Product 05",
+    "category": "Home",
+    "unit_price": 36.25
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd7297fb"
+    },
+    "product_id": 6,
+    "name": "Product 06",
+    "category": "Books",
+    "unit_price": 39.5
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd7297fc"
+    },
+    "product_id": 7,
+    "name": "Product 07",
+    "category": "Electronics",
+    "unit_price": 42.75
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd7297fd"
+    },
+    "product_id": 8,
+    "name": "Product 08",
+    "category": "Home",
+    "unit_price": 46.0
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd7297fe"
+    },
+    "product_id": 9,
+    "name": "Product 09",
+    "category": "Books",
+    "unit_price": 49.25
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd7297ff"
+    },
+    "product_id": 10,
+    "name": "Product 10",
+    "category": "Electronics",
+    "unit_price": 52.5
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd729800"
+    },
+    "product_id": 11,
+    "name": "Product 11",
+    "category": "Home",
+    "unit_price": 55.75
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd729801"
+    },
+    "product_id": 12,
+    "name": "Product 12",
+    "category": "Books",
+    "unit_price": 59.0
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd729802"
+    },
+    "product_id": 13,
+    "name": "Product 13",
+    "category": "Electronics",
+    "unit_price": 62.25
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd729803"
+    },
+    "product_id": 14,
+    "name": "Product 14",
+    "category": "Home",
+    "unit_price": 65.5
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd729804"
+    },
+    "product_id": 15,
+    "name": "Product 15",
+    "category": "Books",
+    "unit_price": 68.75
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd729805"
+    },
+    "product_id": 16,
+    "name": "Product 16",
+    "category": "Electronics",
+    "unit_price": 72.0
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd729806"
+    },
+    "product_id": 17,
+    "name": "Product 17",
+    "category": "Home",
+    "unit_price": 75.25
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd729807"
+    },
+    "product_id": 18,
+    "name": "Product 18",
+    "category": "Books",
+    "unit_price": 78.5
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd729808"
+    },
+    "product_id": 19,
+    "name": "Product 19",
+    "category": "Electronics",
+    "unit_price": 81.75
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b17cd54646dddd729809"
+    },
+    "product_id": 20,
+    "name": "Product 20",
+    "category": "Home",
+    "unit_price": 85.0
+  }
+]

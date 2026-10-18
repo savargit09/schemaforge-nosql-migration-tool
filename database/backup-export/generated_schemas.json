@@ -1,0 +1,252 @@
+[
+  {
+    "_id": {
+      "$oid": "6ab6b1d80f214b9d4adfe4de"
+    },
+    "migration_id": {
+      "$oid": "6ab6b1d80f214b9d4adfe4dd"
+    },
+    "project_id": {
+      "$oid": "6ab6b1d80f214b9d4adfe4dc"
+    },
+    "schema": {
+      "database": "nosql_migration_tool",
+      "collections": [
+        {
+          "name": "customers",
+          "fields": {
+            "customer_id": "Int32/Int64",
+            "name": "String",
+            "email": "String",
+            "city": "String"
+          },
+          "embedded": [],
+          "indexes": [
+            {
+              "field": "customer_id",
+              "direction": 1,
+              "reason": "Supports workload filter access."
+            },
+            {
+              "field": "customer_id",
+              "direction": 1,
+              "reason": "Supports workload primary key access."
+            }
+          ]
+        },
+        {
+          "name": "products",
+          "fields": {
+            "product_id": "Int32/Int64",
+            "name": "String",
+            "category": "String",
+            "unit_price": "Decimal128/Double"
+          },
+          "embedded": [],
+          "indexes": [
+            {
+              "field": "name",
+              "direction": 1,
+              "reason": "Supports workload sort access."
+            },
+            {
+              "field": "product_id",
+              "direction": 1,
+              "reason": "Supports workload primary key access."
+            }
+          ]
+        },
+        {
+          "name": "orders",
+          "fields": {
+            "order_id": "Int32/Int64",
+            "customer_id": "ObjectId (reference)",
+            "order_date": "Date",
+            "status": "String",
+            "order_total": "Decimal128/Double"
+          },
+          "embedded": [
+            {
+              "name": "order_items",
+              "array": true,
+              "fields": {
+                "product_id": "Int32/Int64",
+                "quantity": "Int32/Int64",
+                "unit_price": "Decimal128/Double"
+              }
+            }
+          ],
+          "indexes": [
+            {
+              "field": "customer_id",
+              "direction": 1,
+              "reason": "Supports workload filter access."
+            },
+            {
+              "field": "order_date",
+              "direction": 1,
+              "reason": "Supports workload sort access."
+            },
+            {
+              "field": "order_id",
+              "direction": 1,
+              "reason": "Supports workload primary key access."
+            }
+          ]
+        },
+        {
+          "name": "order_items",
+          "fields": {
+            "item_id": "Int32/Int64",
+            "order_id": "Int32/Int64",
+            "product_id": "ObjectId (reference)",
+            "quantity": "Int32/Int64",
+            "unit_price": "Decimal128/Double"
+          },
+          "embedded": [],
+          "indexes": [
+            {
+              "field": "item_id",
+              "direction": 1,
+              "reason": "Supports workload primary key access."
+            }
+          ]
+        }
+      ]
+    },
+    "created_at": {
+      "$date": "2026-09-25T17:39:36.785Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b2814599ac0b6b3c14c1"
+    },
+    "migration_id": {
+      "$oid": "6ab6b2814599ac0b6b3c14c0"
+    },
+    "project_id": {
+      "$oid": "6ab6b1d80f214b9d4adfe4dc"
+    },
+    "schema": {
+      "database": "nosql_migration_tool",
+      "collections": [
+        {
+          "name": "customers",
+          "fields": {
+            "_id": "ObjectId",
+            "customer_id": "Int32/Int64",
+            "name": "String",
+            "email": "String",
+            "city": "String"
+          },
+          "embedded": [
+            {
+              "name": "orders",
+              "array": true,
+              "fields": {
+                "order_date": "Date",
+                "status": "String",
+                "order_total": "Decimal128/Double"
+              }
+            }
+          ],
+          "indexes": [
+            {
+              "field": "customer_id",
+              "direction": 1,
+              "reason": "Supports workload filter, primary key access."
+            }
+          ]
+        },
+        {
+          "name": "products",
+          "fields": {
+            "_id": "ObjectId",
+            "product_id": "Int32/Int64",
+            "name": "String",
+            "category": "String",
+            "unit_price": "Decimal128/Double"
+          },
+          "embedded": [],
+          "indexes": [
+            {
+              "field": "name",
+              "direction": 1,
+              "reason": "Supports workload sort access."
+            },
+            {
+              "field": "product_id",
+              "direction": 1,
+              "reason": "Supports workload primary key access."
+            }
+          ]
+        },
+        {
+          "name": "orders",
+          "fields": {
+            "_id": "ObjectId",
+            "order_id": "Int32/Int64",
+            "customer_id": "Int32/Int64",
+            "order_date": "Date",
+            "status": "String",
+            "order_total": "Decimal128/Double"
+          },
+          "embedded": [
+            {
+              "name": "order_items",
+              "array": true,
+              "fields": {
+                "product_id": "Int32/Int64 (reference to products.product_id)",
+                "quantity": "Int32/Int64",
+                "unit_price": "Decimal128/Double"
+              }
+            }
+          ],
+          "indexes": [
+            {
+              "field": "customer_id",
+              "direction": 1,
+              "reason": "Supports workload filter access."
+            },
+            {
+              "field": "order_date",
+              "direction": 1,
+              "reason": "Supports workload sort access."
+            },
+            {
+              "field": "order_id",
+              "direction": 1,
+              "reason": "Supports workload primary key access."
+            }
+          ]
+        },
+        {
+          "name": "order_items",
+          "fields": {
+            "_id": "ObjectId",
+            "item_id": "Int32/Int64",
+            "order_id": "Int32/Int64",
+            "product_id": "Int32/Int64 (reference to products.product_id)",
+            "quantity": "Int32/Int64",
+            "unit_price": "Decimal128/Double"
+          },
+          "embedded": [],
+          "indexes": [
+            {
+              "field": "item_id",
+              "direction": 1,
+              "reason": "Supports workload primary key access."
+            }
+          ]
+        }
+      ]
+    },
+    "created_at": {
+      "$date": "2026-09-25T17:42:25.241Z"
+    },
+    "updated_at": {
+      "$date": "2026-09-25T17:42:53.623Z"
+    }
+  }
+]

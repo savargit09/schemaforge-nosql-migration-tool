@@ -1,0 +1,340 @@
+[
+  {
+    "_id": {
+      "$oid": "6ab6b1d80f214b9d4adfe4e0"
+    },
+    "project_id": "6ab6b1d80f214b9d4adfe4dc",
+    "ddl": "CREATE TABLE customers (customer_id INT PRIMARY KEY, name VARCHAR(100) NOT NULL, email VARCHAR(160), city VARCHAR(80));\nCREATE TABLE products (product_id INT PRIMARY KEY, name VARCHAR(120), category VARCHAR(80), unit_price DECIMAL(10,2));\nCREATE TABLE orders (order_id INT PRIMARY KEY, customer_id INT NOT NULL, order_date DATE, status VARCHAR(30), order_total DECIMAL(12,2), CONSTRAINT fk_orders_customer FOREIGN KEY (customer_id) REFERENCES customers(customer_id));\nCREATE TABLE order_items (item_id INT PRIMARY KEY, order_id INT NOT NULL, product_id INT NOT NULL, quantity INT, unit_price DECIMAL(10,2), CONSTRAINT fk_items_order FOREIGN KEY (order_id) REFERENCES orders(order_id), CONSTRAINT fk_items_product FOREIGN KEY (product_id) REFERENCES products(product_id));",
+    "parsed": {
+      "tables": [
+        {
+          "name": "customers",
+          "columns": [
+            {
+              "name": "customer_id",
+              "type": "INT",
+              "nullable": true
+            },
+            {
+              "name": "name",
+              "type": "VARCHAR(100)",
+              "nullable": true
+            },
+            {
+              "name": "email",
+              "type": "VARCHAR(160)",
+              "nullable": true
+            },
+            {
+              "name": "city",
+              "type": "VARCHAR(80)",
+              "nullable": true
+            }
+          ],
+          "primary_key": [
+            "customer_id"
+          ],
+          "foreign_keys": []
+        },
+        {
+          "name": "products",
+          "columns": [
+            {
+              "name": "product_id",
+              "type": "INT",
+              "nullable": true
+            },
+            {
+              "name": "name",
+              "type": "VARCHAR(120)",
+              "nullable": true
+            },
+            {
+              "name": "category",
+              "type": "VARCHAR(80)",
+              "nullable": true
+            },
+            {
+              "name": "unit_price",
+              "type": "DECIMAL(10, 2)",
+              "nullable": true
+            }
+          ],
+          "primary_key": [
+            "product_id"
+          ],
+          "foreign_keys": []
+        },
+        {
+          "name": "orders",
+          "columns": [
+            {
+              "name": "order_id",
+              "type": "INT",
+              "nullable": true
+            },
+            {
+              "name": "customer_id",
+              "type": "INT",
+              "nullable": true
+            },
+            {
+              "name": "order_date",
+              "type": "DATE",
+              "nullable": true
+            },
+            {
+              "name": "status",
+              "type": "VARCHAR(30)",
+              "nullable": true
+            },
+            {
+              "name": "order_total",
+              "type": "DECIMAL(12, 2)",
+              "nullable": true
+            }
+          ],
+          "primary_key": [
+            "order_id"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "customer_id"
+              ],
+              "references_table": "customers",
+              "references_columns": [
+                "customer_id"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "order_items",
+          "columns": [
+            {
+              "name": "item_id",
+              "type": "INT",
+              "nullable": true
+            },
+            {
+              "name": "order_id",
+              "type": "INT",
+              "nullable": true
+            },
+            {
+              "name": "product_id",
+              "type": "INT",
+              "nullable": true
+            },
+            {
+              "name": "quantity",
+              "type": "INT",
+              "nullable": true
+            },
+            {
+              "name": "unit_price",
+              "type": "DECIMAL(10, 2)",
+              "nullable": true
+            }
+          ],
+          "primary_key": [
+            "item_id"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "order_id"
+              ],
+              "references_table": "orders",
+              "references_columns": [
+                "order_id"
+              ]
+            },
+            {
+              "columns": [
+                "product_id"
+              ],
+              "references_table": "products",
+              "references_columns": [
+                "product_id"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "created_at": {
+      "$date": "2026-09-25T17:39:36.785Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b2814599ac0b6b3c14c3"
+    },
+    "project_id": "6ab6b1d80f214b9d4adfe4dc",
+    "ddl": "CREATE TABLE customers (customer_id INT PRIMARY KEY, name VARCHAR(100) NOT NULL, email VARCHAR(160), city VARCHAR(80));\nCREATE TABLE products (product_id INT PRIMARY KEY, name VARCHAR(120), category VARCHAR(80), unit_price DECIMAL(10,2));\nCREATE TABLE orders (order_id INT PRIMARY KEY, customer_id INT NOT NULL, order_date DATE, status VARCHAR(30), order_total DECIMAL(12,2), CONSTRAINT fk_orders_customer FOREIGN KEY (customer_id) REFERENCES customers(customer_id));\nCREATE TABLE order_items (item_id INT PRIMARY KEY, order_id INT NOT NULL, product_id INT NOT NULL, quantity INT, unit_price DECIMAL(10,2), CONSTRAINT fk_items_order FOREIGN KEY (order_id) REFERENCES orders(order_id), CONSTRAINT fk_items_product FOREIGN KEY (product_id) REFERENCES products(product_id));",
+    "parsed": {
+      "tables": [
+        {
+          "name": "customers",
+          "columns": [
+            {
+              "name": "customer_id",
+              "type": "INT",
+              "nullable": true
+            },
+            {
+              "name": "name",
+              "type": "VARCHAR(100)",
+              "nullable": true
+            },
+            {
+              "name": "email",
+              "type": "VARCHAR(160)",
+              "nullable": true
+            },
+            {
+              "name": "city",
+              "type": "VARCHAR(80)",
+              "nullable": true
+            }
+          ],
+          "primary_key": [
+            "customer_id"
+          ],
+          "foreign_keys": []
+        },
+        {
+          "name": "products",
+          "columns": [
+            {
+              "name": "product_id",
+              "type": "INT",
+              "nullable": true
+            },
+            {
+              "name": "name",
+              "type": "VARCHAR(120)",
+              "nullable": true
+            },
+            {
+              "name": "category",
+              "type": "VARCHAR(80)",
+              "nullable": true
+            },
+            {
+              "name": "unit_price",
+              "type": "DECIMAL(10, 2)",
+              "nullable": true
+            }
+          ],
+          "primary_key": [
+            "product_id"
+          ],
+          "foreign_keys": []
+        },
+        {
+          "name": "orders",
+          "columns": [
+            {
+              "name": "order_id",
+              "type": "INT",
+              "nullable": true
+            },
+            {
+              "name": "customer_id",
+              "type": "INT",
+              "nullable": true
+            },
+            {
+              "name": "order_date",
+              "type": "DATE",
+              "nullable": true
+            },
+            {
+              "name": "status",
+              "type": "VARCHAR(30)",
+              "nullable": true
+            },
+            {
+              "name": "order_total",
+              "type": "DECIMAL(12, 2)",
+              "nullable": true
+            }
+          ],
+          "primary_key": [
+            "order_id"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "customer_id"
+              ],
+              "references_table": "customers",
+              "references_columns": [
+                "customer_id"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "order_items",
+          "columns": [
+            {
+              "name": "item_id",
+              "type": "INT",
+              "nullable": true
+            },
+            {
+              "name": "order_id",
+              "type": "INT",
+              "nullable": true
+            },
+            {
+              "name": "product_id",
+              "type": "INT",
+              "nullable": true
+            },
+            {
+              "name": "quantity",
+              "type": "INT",
+              "nullable": true
+            },
+            {
+              "name": "unit_price",
+              "type": "DECIMAL(10, 2)",
+              "nullable": true
+            }
+          ],
+          "primary_key": [
+            "item_id"
+          ],
+          "foreign_keys": [
+            {
+              "columns": [
+                "order_id"
+              ],
+              "references_table": "orders",
+              "references_columns": [
+                "order_id"
+              ]
+            },
+            {
+              "columns": [
+                "product_id"
+              ],
+              "references_table": "products",
+              "references_columns": [
+                "product_id"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "created_at": {
+      "$date": "2026-09-25T17:42:25.241Z"
+    }
+  }
+]

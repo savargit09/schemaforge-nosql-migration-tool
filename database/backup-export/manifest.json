@@ -1,0 +1,201 @@
+{
+  "database": "nosql_migration_tool",
+  "collections": [
+    {
+      "name": "customers",
+      "document_count": 15,
+      "indexes": [
+        {
+          "name": "customer_id_1",
+          "keys": [
+            [
+              "customer_id",
+              1
+            ]
+          ],
+          "unique": true
+        }
+      ]
+    },
+    {
+      "name": "generated_schemas",
+      "document_count": 2,
+      "indexes": [
+        {
+          "name": "migration_id_1",
+          "keys": [
+            [
+              "migration_id",
+              1
+            ]
+          ],
+          "unique": true
+        }
+      ]
+    },
+    {
+      "name": "migration_runs",
+      "document_count": 2,
+      "indexes": [
+        {
+          "name": "project_id_1_created_at_-1",
+          "keys": [
+            [
+              "project_id",
+              1
+            ],
+            [
+              "created_at",
+              -1
+            ]
+          ]
+        },
+        {
+          "name": "created_at_-1",
+          "keys": [
+            [
+              "created_at",
+              -1
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "orders",
+      "document_count": 40,
+      "indexes": [
+        {
+          "name": "order_id_1",
+          "keys": [
+            [
+              "order_id",
+              1
+            ]
+          ],
+          "unique": true
+        },
+        {
+          "name": "customer_id_1_order_date_-1",
+          "keys": [
+            [
+              "customer_id",
+              1
+            ],
+            [
+              "order_date",
+              -1
+            ]
+          ]
+        },
+        {
+          "name": "status_1_order_date_-1",
+          "keys": [
+            [
+              "status",
+              1
+            ],
+            [
+              "order_date",
+              -1
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "products",
+      "document_count": 20,
+      "indexes": [
+        {
+          "name": "product_id_1",
+          "keys": [
+            [
+              "product_id",
+              1
+            ]
+          ],
+          "unique": true
+        }
+      ]
+    },
+    {
+      "name": "projects",
+      "document_count": 2,
+      "indexes": [
+        {
+          "name": "name_1",
+          "keys": [
+            [
+              "name",
+              1
+            ]
+          ]
+        },
+        {
+          "name": "created_at_-1",
+          "keys": [
+            [
+              "created_at",
+              -1
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "schemas",
+      "document_count": 2,
+      "indexes": [
+        {
+          "name": "project_id_1_created_at_-1",
+          "keys": [
+            [
+              "project_id",
+              1
+            ],
+            [
+              "created_at",
+              -1
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "tradeoff_reports",
+      "document_count": 2,
+      "indexes": [
+        {
+          "name": "migration_id_1",
+          "keys": [
+            [
+              "migration_id",
+              1
+            ]
+          ],
+          "unique": true
+        }
+      ]
+    },
+    {
+      "name": "workloads",
+      "document_count": 2,
+      "indexes": [
+        {
+          "name": "project_id_1_created_at_-1",
+          "keys": [
+            [
+              "project_id",
+              1
+            ],
+            [
+              "created_at",
+              -1
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

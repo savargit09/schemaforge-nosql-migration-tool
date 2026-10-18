@@ -1,0 +1,109 @@
+[
+  {
+    "_id": {
+      "$oid": "6ab6b1d80f214b9d4adfe4df"
+    },
+    "migration_id": {
+      "$oid": "6ab6b1d80f214b9d4adfe4dd"
+    },
+    "project_id": {
+      "$oid": "6ab6b1d80f214b9d4adfe4dc"
+    },
+    "items": [
+      {
+        "decision": "REFERENCE",
+        "relationship": "customers->orders",
+        "evidence": [
+          "Estimated child/parent row ratio: 2.67 (one-to-few).",
+          "Queries co-accessing customers and orders: 1 of 3.",
+          "Independent table accesses: orders=2, customers=1."
+        ],
+        "benefit": "Bounds document growth and avoids duplicating independently maintained child records.",
+        "tradeoff": "Reads that need both entities require an additional reference resolution.",
+        "reason": "High or unknown fan-out risks unbounded parent documents; independent child access also favors a reference."
+      },
+      {
+        "decision": "EMBED",
+        "relationship": "orders->order_items",
+        "evidence": [
+          "Estimated child/parent row ratio: 2.0 (one-to-few).",
+          "Queries co-accessing orders and order_items: 1 of 3.",
+          "Independent table accesses: order_items=2, orders=2."
+        ],
+        "benefit": "Avoids a separate relationship lookup on co-accessed reads.",
+        "tradeoff": "Parent documents grow; updating child values may require rewriting the parent.",
+        "reason": "The relationship is retrieved together by the workload and estimated fan-out is bounded, so embedding can avoid a separate lookup."
+      },
+      {
+        "decision": "REFERENCE",
+        "relationship": "products->order_items",
+        "evidence": [
+          "Estimated child/parent row ratio: 4.0 (one-to-few).",
+          "Queries co-accessing products and order_items: 1 of 3.",
+          "Independent table accesses: order_items=2, products=1."
+        ],
+        "benefit": "Bounds document growth and avoids duplicating independently maintained child records.",
+        "tradeoff": "Reads that need both entities require an additional reference resolution.",
+        "reason": "High or unknown fan-out risks unbounded parent documents; independent child access also favors a reference."
+      }
+    ],
+    "created_at": {
+      "$date": "2026-09-25T17:39:36.785Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6ab6b2814599ac0b6b3c14c2"
+    },
+    "migration_id": {
+      "$oid": "6ab6b2814599ac0b6b3c14c0"
+    },
+    "project_id": {
+      "$oid": "6ab6b1d80f214b9d4adfe4dc"
+    },
+    "items": [
+      {
+        "decision": "EMBED",
+        "relationship": "customers->orders",
+        "evidence": [
+          "Estimated child/parent row ratio: 2.67 (one-to-few).",
+          "Queries co-accessing customers and orders: 1 of 3.",
+          "Independent table accesses: orders=2, customers=1."
+        ],
+        "benefit": "Avoids a separate relationship lookup on co-accessed reads.",
+        "tradeoff": "Parent documents grow; updating child values may require rewriting the parent.",
+        "reason": "The relationship is retrieved together by the workload and estimated fan-out is bounded, so embedding can avoid a separate lookup."
+      },
+      {
+        "decision": "EMBED",
+        "relationship": "orders->order_items",
+        "evidence": [
+          "Estimated child/parent row ratio: 2.0 (one-to-few).",
+          "Queries co-accessing orders and order_items: 1 of 3.",
+          "Independent table accesses: order_items=2, orders=2."
+        ],
+        "benefit": "Avoids a separate relationship lookup on co-accessed reads.",
+        "tradeoff": "Parent documents grow; updating child values may require rewriting the parent.",
+        "reason": "The relationship is retrieved together by the workload and estimated fan-out is bounded, so embedding can avoid a separate lookup."
+      },
+      {
+        "decision": "REFERENCE",
+        "relationship": "products->order_items",
+        "evidence": [
+          "Estimated child/parent row ratio: 4.0 (one-to-few).",
+          "Queries co-accessing products and order_items: 1 of 3.",
+          "Independent table accesses: order_items=2, products=1."
+        ],
+        "benefit": "Bounds document growth and avoids duplicating independently maintained child records.",
+        "tradeoff": "Reads that need both entities require an additional reference resolution.",
+        "reason": "Independent child access exceeds observed co-access, so referencing keeps the child separately addressable and limits unnecessary duplication."
+      }
+    ],
+    "created_at": {
+      "$date": "2026-09-25T17:42:25.241Z"
+    },
+    "updated_at": {
+      "$date": "2026-09-25T17:42:53.629Z"
+    }
+  }
+]
